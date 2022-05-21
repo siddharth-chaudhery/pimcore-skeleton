@@ -20,7 +20,7 @@ services:
         depends_on:
             - db
         volumes:
-            - .:/var/www/html
+            - ../:/var/www/html
             - pimcore-tmp-storage:/tmp
 volumes:
     pimcore-database:

@@ -10,3 +10,23 @@ phases:
       - cp ./.build/database.yaml config/local
       - docker-compose -f ./.build/docker-compose.yml exec -T php-fpm bin/console pimcore:deployment:classes-rebuild -c -v
 
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no
+  enable-symlinks: yes
+  exclude-paths:
+    - .build/
+    - cache/
+    - config/local/
+    - public/var/
+    - var/admin/
+    - var/application-logger/
+    - var/cache/
+    - var/email/
+    - var/log/
+    - var/recyclebin/
+    - var/sessions/
+    - var/tmp/
+    - var/versions/
+  

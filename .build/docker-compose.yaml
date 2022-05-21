@@ -1,0 +1,27 @@
+services:
+
+    db:
+        image: mariadb:10.7
+        working_dir: /application
+        command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --innodb-file-per-table=1]
+        volumes:
+            - pimcore-database:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=ROOT
+            - MYSQL_DATABASE=pimcore
+            - MYSQL_USER=pimcore
+            - MYSQL_PASSWORD=pimcore
+
+    php-fpm:
+        #user: '1000:1000' # set to your uid:gid
+        image: pimcore/pimcore:PHP8.1-fpm
+        environment:
+            COMPOSER_HOME: /var/www/html
+        depends_on:
+            - db
+        volumes:
+            - .:/var/www/html
+            - pimcore-tmp-storage:/tmp
+volumes:
+    pimcore-database:
+    pimcore-tmp-storage:

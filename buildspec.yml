@@ -5,6 +5,7 @@ phases:
     commands:
       - echo Nothing to do in the pre_build phase...
       - docker-compose up -d
+      - docker-compose exec php-fpm composer install
   build:
     commands:
       - echo Build started on `date`

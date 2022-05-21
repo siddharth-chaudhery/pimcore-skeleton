@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-      - docker run helloworld echo "Hello, World!"
+      - docker run helloworld
   build:
     commands:
       - echo Build started on `date`

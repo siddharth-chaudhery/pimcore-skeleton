@@ -9,24 +9,13 @@ phases:
       - docker-compose -f ./.build/docker-compose.yml exec -T -e PIMCORE_INSTALL_ADMIN_USERNAME=pimcore -e PIMCORE_INSTALL_ADMIN_PASSWORD=pimcore -e PIMCORE_INSTALL_MYSQL_USERNAME=pimcore -e PIMCORE_INSTALL_MYSQL_PASSWORD=pimcore php-fpm vendor/bin/pimcore-install -n --mysql-host-socket=db --mysql-database=pimcore
       - cp ./.build/database.yaml config/local
       - docker-compose -f ./.build/docker-compose.yml exec -T php-fpm bin/console pimcore:deployment:classes-rebuild -c -v
+  post_build:
+    commands:
+      - echo removing unwanted directories
+      - rm -rf .build/ cache/  config/local/ public/var/ var/admin/ var/application-logger/ var/cache/ var/email/ var/log/ var/recyclebin/ var/sessions/ var/tmp/ var/versions/ 
 
 artifacts:
   files:
     - '**/*'
   discard-paths: no
   enable-symlinks: yes
-  exclude-paths:
-    - .build/
-    - cache/
-    - config/local/
-    - public/var/
-    - var/admin/
-    - var/application-logger/
-    - var/cache/
-    - var/email/
-    - var/log/
-    - var/recyclebin/
-    - var/sessions/
-    - var/tmp/
-    - var/versions/
-  

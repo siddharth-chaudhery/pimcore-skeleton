@@ -12,7 +12,7 @@ phases:
   post_build:
     commands:
       - echo removing unwanted directories
-      - rm -rf .build/ cache/  config/local/ public/bundles/ public/var/ var/admin/ var/application-logger/ var/cache/ var/email/ var/log/ var/recyclebin/ var/sessions/ var/tmp/ var/versions/ 
+      - rm -rf .build/ cache/  config/local/ public/bundles/ public/var/ var/admin/ var/application-logger/ var/cache/ var/email/ var/log/ var/recyclebin/ var/sessions/ var/tmp/ var/versions/ var/installer 
 
 artifacts:
   files:
